@@ -7,6 +7,11 @@ export default {
   theme: {
     extend: {
       colors: {
+        'slate-gray': '#7D8D9E',
+        'reseda-green': '#748574',
+        'battleship-gray': '#7F7F6F',
+        'battleship-gray-2': '#858F89',
+        'jet': '#383633',
         lavender: {
           50: '#f5f3ff',
           100: '#ede9fe',
@@ -46,6 +51,9 @@ export default {
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
+      },
+      backgroundImage: {
+        'gradient-soft': 'linear-gradient(180deg, #7D8D9E 0%, #748574 25%, #7F7F6F 50%, #858F89 75%, #383633 100%)',
       },
     },
   },

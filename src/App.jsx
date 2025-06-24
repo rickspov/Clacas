@@ -3,9 +3,13 @@ import claraImage from './assets/clara-castro.jpg';
 import bgTexture from './assets/bg-texture.png';
 import SignatureCanvas from 'react-signature-canvas';
 import FormularioAgendamiento from './components/FormularioAgendamiento';
+import SobreMi from './components/SobreMi';
 import ClacasLogoBlack from './assets/claclaslogoblack.png';
 import ClacasHero from './assets/clacashero.png';
 import ClacasLogoWhite from './assets/clacaslogowhite.png';
+import { UserIcon, UsersIcon, ClipboardCheckIcon } from './components/icons/ServiceIcons';
+import { motion } from 'framer-motion';
+import AnieButterflyBot from './components/AnieButterflyBot';
 
 function App() {
   const [openFaq, setOpenFaq] = useState(null);
@@ -80,34 +84,19 @@ function App() {
 
   const services = [
     {
-      title: "Terapia Individual",
-      description: "Un espacio seguro para explorar tus emociones, superar crisis y reconectar contigo.",
-      icon: "🧠"
+      title: "Terapia Individual (adultos y jóvenes)",
+      description: "Acompañamiento terapéutico personalizado enfocado en el manejo de ansiedad, emociones intensas, desarrollo personal y bienestar emocional. Disponible en modalidad presencial u online.",
+      icon: <UserIcon className="w-8 h-8" color="#FFFFFF" />
     },
     {
-      title: "Terapia de Pareja",
-      description: "Mejora la comunicación, resuelve conflictos y fortalece el vínculo emocional.",
-      icon: "💕"
+      title: "Terapia de Grupo",
+      description: "Sesiones grupales orientadas a la empatía, el compartir y la conexión emocional. Ideal para quienes buscan acompañamiento en un entorno respetuoso y guiado.",
+      icon: <UsersIcon className="w-8 h-8" color="#FFFFFF" />
     },
     {
-      title: "Terapia para Adolescentes",
-      description: "Acompañamiento psicológico en procesos de cambio, autoestima y manejo emocional.",
-      icon: "🎓"
-    },
-    {
-      title: "Psicoterapia Online",
-      description: "Atención profesional desde la comodidad de tu espacio, con la misma calidad.",
-      icon: "💻"
-    },
-    {
-      title: "Evaluación Psicológica",
-      description: "Evaluaciones clínicas con reportes personalizados para diagnóstico o seguimiento.",
-      icon: "📋"
-    },
-    {
-      title: "Terapia Familiar",
-      description: "Mejora las dinámicas y fortalece la conexión dentro del núcleo familiar.",
-      icon: "👨‍👩‍👧‍👦"
+      title: "Evaluaciones Pre y Post Quirúrgicas",
+      description: "Evaluaciones clínicas necesarias antes y después de intervenciones quirúrgicas. Incluye análisis emocional, entrevista y validación psicológica para tu seguridad y tranquilidad.",
+      icon: <ClipboardCheckIcon className="w-8 h-8" color="#FFFFFF" />
     }
   ];
 
@@ -121,9 +110,12 @@ function App() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-lavender-50 to-beige-50">
+    <div className="min-h-screen bg-gradient-soft relative">
+      {/* Fondo decorativo con mariposas */}
+      <div className="decorative-bg"></div>
+      
       {/* Navbar */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm shadow-sm border-b border-lavender-100">
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm shadow-sm border-b border-reseda-green/20">
         <div className="container mx-auto px-6">
           <div className="flex items-center justify-between h-20">
             {/* Logo/Nombre */}
@@ -141,7 +133,7 @@ function App() {
                 <button
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
-                  className="text-gray-700 hover:text-lavender-600 font-medium transition-colors duration-200 py-2"
+                  className="text-jet hover:text-reseda-green font-medium transition-colors duration-200 py-2"
                 >
                   {item.name}
                 </button>
@@ -152,7 +144,7 @@ function App() {
             <div className="md:hidden">
               <button
                 onClick={toggleMenu}
-                className="text-gray-700 hover:text-lavender-600 transition-colors duration-200"
+                className="text-jet hover:text-reseda-green transition-colors duration-200"
                 aria-label="Toggle menu"
               >
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -168,13 +160,13 @@ function App() {
 
           {/* Menú Móvil */}
           {isMenuOpen && (
-            <div className="md:hidden bg-white border-t border-lavender-100">
+            <div className="md:hidden bg-white border-t border-reseda-green/20">
               <div className="px-4 py-2 space-y-1">
                 {navItems.map((item) => (
                   <button
                     key={item.id}
                     onClick={() => scrollToSection(item.id)}
-                    className="block w-full text-left text-gray-700 hover:text-lavender-600 hover:bg-lavender-50 font-medium transition-colors duration-200 py-3 px-4 rounded-lg"
+                    className="block w-full text-left text-jet hover:text-reseda-green hover:bg-reseda-green/10 font-medium transition-colors duration-200 py-3 px-4 rounded-lg"
                   >
                     {item.name}
                   </button>
@@ -186,12 +178,16 @@ function App() {
       </nav>
 
       {/* Hero Section */}
-      <section 
+      <motion.section
         id="hero"
-        className="relative min-h-screen flex items-center pt-20 bg-[url('/src/assets/bg-texture.png')] bg-cover bg-center"
+        className="relative min-h-screen flex items-center pt-20 bg-gradient-soft bg-cover bg-center"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: 'easeOut' }}
+        viewport={{ once: true }}
       >
         {/* Capa semitransparente para mejor contraste */}
-        <div className="absolute inset-0 bg-white/80"></div>
+        <div className="absolute inset-0 bg-white/20"></div>
         
         <div className="container mx-auto px-6 relative z-10">
           <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
@@ -203,19 +199,21 @@ function App() {
                   alt="CLACAS Hero Logo" 
                   className="max-w-[200px] w-auto mb-4"
                 />
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800">
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-jet">
                   Psic. Clara Castro González
                 </h1>
               </div>
-              <p className="text-xl md:text-2xl text-gray-600 mb-8 italic leading-relaxed">
+              <p className="text-xl md:text-2xl text-battleship-gray mb-8 italic leading-relaxed">
                 "A veces, el primer paso hacia tu bienestar emocional es simplemente hablar."
               </p>
-              <button 
+              <motion.button
                 onClick={() => setShowFormulario(true)}
-                className="bg-gradient-to-r from-lavender-500 to-olive-500 hover:from-lavender-600 hover:to-olive-600 text-white font-semibold py-4 px-8 rounded-full text-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
+                className="bg-gradient-to-r from-reseda-green to-battleship-gray-2 hover:from-battleship-gray-2 hover:to-reseda-green text-white font-semibold py-4 px-8 rounded-full text-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
+                whileHover={{ scale: 1.05 }}
+                transition={{ type: 'spring', stiffness: 200, damping: 15 }}
               >
                 Agenda tu cita
-              </button>
+              </motion.button>
             </div>
             
             {/* Imagen - Derecha en desktop, abajo en móvil */}
@@ -224,107 +222,90 @@ function App() {
                 <img 
                   src={claraImage} 
                   alt="Psic. Clara Castro González" 
-                  className="w-80 h-80 md:w-96 md:h-96 lg:w-[450px] lg:h-[450px] object-cover rounded-full shadow-2xl animate-fadeInUp border-4 border-white/30"
+                  className="w-80 h-80 md:w-96 md:h-96 lg:w-[450px] lg:h-[450px] object-cover rounded-full shadow-2xl animate-fadeInUp border-4 border-white/30 scale-110"
                   style={{
                     animation: 'fadeInUp 0.8s ease-out',
                     boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.1)',
-                    objectPosition: 'center 30%'
+                    objectPosition: 'center 20%'
                   }}
                 />
-                <div className="absolute inset-0 rounded-full bg-gradient-to-br from-lavender-200/20 to-olive-200/20 animate-pulse"></div>
+                <div className="absolute inset-0 rounded-full bg-gradient-to-br from-reseda-green/20 to-battleship-gray-2/20 animate-pulse"></div>
               </div>
             </div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Sobre Mí Section */}
-      <section id="about" className="py-20 bg-white">
-        <div className="container mx-auto px-6">
-          <h2 className="text-4xl font-bold text-center text-gray-800 mb-16">Sobre Mí</h2>
-          <div className="max-w-6xl mx-auto">
-            <div className="flex flex-col lg:flex-row items-center gap-12">
-              {/* Imagen */}
-              <div className="flex-1 flex justify-center hidden md:block">
-                <div className="relative">
-                  <img 
-                    src={claraImage} 
-                    alt="Psic. Clara Castro González" 
-                    className="w-80 h-80 object-cover rounded-2xl shadow-xl"
-                    style={{
-                      objectPosition: 'center 30%'
-                    }}
-                  />
-                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-lavender-200/10 to-olive-200/10"></div>
-                </div>
-              </div>
-              
-              {/* Contenido */}
-              <div className="flex-1 w-full md:w-auto">
-                <div className="bg-gradient-to-r from-lavender-50 to-beige-50 p-8 rounded-2xl shadow-lg">
-                  <h3 className="text-3xl font-bold text-gray-800 mb-6">
-                    <span className="text-2xl">👩‍⚕️</span> Psic. Clara Castro González
-                  </h3>
-                  <div className="space-y-6 text-lg text-gray-700 leading-relaxed">
-                    <p>
-                      Soy psicóloga clínica con más de 10 años de experiencia acompañando a personas en sus procesos de sanación emocional, autoconocimiento y crecimiento personal. Mi enfoque es cálido, empático y centrado en el bienestar integral de cada persona. Trabajo con adolescentes, adultos y parejas, tanto de forma presencial como online.
-                    </p>
-                    <p>
-                      Mi propósito es brindarte un espacio seguro donde puedas expresarte libremente, identificar tus emociones, y construir herramientas que te permitan vivir con más claridad, calma y conexión contigo mismo.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <SobreMi />
 
       {/* Servicios Section */}
-      <section id="services" className="py-20 bg-gradient-to-br from-beige-50 to-olive-50">
+      <motion.section id="services" className="py-20 bg-gradient-to-br from-slate-gray/10 to-battleship-gray-2/10"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: 'easeOut' }}
+        viewport={{ once: true }}>
         <div className="container mx-auto px-6">
-          <h2 className="text-4xl font-bold text-center text-gray-800 mb-16">Mis Servicios</h2>
+          <h2 className="text-4xl font-bold text-center text-jet mb-16">Mis Servicios</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {services.map((service, index) => (
-              <div key={index} className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
-                <div className="w-16 h-16 bg-gradient-to-br from-lavender-200 to-lavender-300 rounded-full flex items-center justify-center mb-6">
-                  {service.title === "Terapia para Adolescentes" ? (
-                    <img 
-                      src={ClacasLogoBlack} 
-                      alt="CLACAS Logo" 
-                      className="w-6 h-6"
-                    />
-                  ) : (
-                    <span className="text-2xl">{service.icon}</span>
-                  )}
+              <motion.div key={index} className="bg-white/90 backdrop-blur-sm rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-reseda-green/20"
+                whileHover={{ scale: 1.03 }}
+                transition={{ type: 'spring', stiffness: 200, damping: 15 }}>
+                <div className="w-16 h-16 bg-gradient-to-br from-reseda-green to-battleship-gray-2 rounded-full flex items-center justify-center mb-6 transition-opacity duration-300 hover:opacity-90">
+                  {service.icon}
                 </div>
-                <h3 className="text-xl font-semibold text-gray-800 mb-4">{service.title}</h3>
-                <p className="text-gray-600 leading-relaxed">
+                <h3 className="text-xl font-semibold text-jet mb-4">{service.title}</h3>
+                <p className="text-battleship-gray leading-relaxed">
                   {service.description}
                 </p>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
-      </section>
+      </motion.section>
+
+      {/* ¿Qué son las consultas pre y post quirúrgicas? */}
+      <motion.section className="my-10 mt-16 mb-16 flex justify-center"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: 'easeOut' }}
+        viewport={{ once: true }}>
+        <div className="w-full max-w-4xl bg-[#f9f9f9]/90 p-8 rounded-2xl shadow-lg mx-auto flex flex-col items-center">
+          <h2 className="text-2xl md:text-3xl font-semibold text-center text-jet mb-6">
+            ¿Qué son las consultas pre y post quirúrgicas?
+          </h2>
+          <motion.video controls className="rounded-xl w-full max-w-3xl mx-auto mt-4 shadow-md"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1.2, ease: 'easeOut' }}>
+            <source src={`${import.meta.env.BASE_URL}videos/videoclara.mp4`} type="video/mp4" />
+            Tu navegador no soporta el video.
+          </motion.video>
+        </div>
+      </motion.section>
 
       {/* ¿Por qué ir a terapia? Section */}
-      <section id="faq" className="py-20" style={{ backgroundColor: '#E8E1F1' }}>
+      <motion.section id="faq" className="py-20 bg-gradient-to-br from-reseda-green/10 to-battleship-gray/10"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: 'easeOut' }}
+        viewport={{ once: true }}>
         <div className="container mx-auto px-6">
-          <h2 className="text-4xl font-bold text-center text-gray-800 mb-16">Preguntas Frecuentes</h2>
+          <h2 className="text-4xl font-bold text-center text-jet mb-16">Preguntas Frecuentes</h2>
           <div className="max-w-4xl mx-auto">
             <div className="space-y-4">
               {faqData.map((faq, index) => (
-                <div key={index} className="bg-white rounded-2xl shadow-lg overflow-hidden border border-lavender-200">
+                <div key={index} className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-lg overflow-hidden border border-reseda-green/20">
                   <button
-                    className="w-full px-8 py-6 text-left flex justify-between items-center hover:bg-lavender-50 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-lavender-300 focus:ring-inset"
+                    className="w-full px-8 py-6 text-left flex justify-between items-center hover:bg-reseda-green/10 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-reseda-green focus:ring-inset"
                     onClick={() => toggleFaq(index)}
                     aria-expanded={openFaq === index}
                     aria-controls={`faq-content-${index}`}
                   >
-                    <span className="font-semibold text-lg text-gray-800 pr-4">{faq.question}</span>
+                    <span className="font-semibold text-lg text-jet pr-4">{faq.question}</span>
                     <span 
-                      className={`flex-shrink-0 w-6 h-6 text-lavender-600 transition-transform duration-300 ${
+                      className={`flex-shrink-0 w-6 h-6 text-reseda-green transition-transform duration-300 ${
                         openFaq === index ? 'rotate-180' : ''
                       }`}
                       aria-hidden="true"
@@ -341,7 +322,7 @@ function App() {
                     }`}
                   >
                     <div className="px-8 pb-6">
-                      <p className="text-gray-700 leading-relaxed text-base">
+                      <p className="text-battleship-gray leading-relaxed text-base">
                         {faq.answer}
                       </p>
                     </div>
@@ -351,23 +332,27 @@ function App() {
             </div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Blog Section */}
-      <section id="blog" className="py-20 bg-gradient-to-br from-olive-50 to-beige-50">
+      <motion.section id="blog" className="py-20 bg-gradient-to-br from-battleship-gray/10 to-slate-gray/10"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: 'easeOut' }}
+        viewport={{ once: true }}>
         <div className="container mx-auto px-6">
-          <h2 className="text-4xl font-bold text-center text-gray-800 mb-16">Blog</h2>
+          <h2 className="text-4xl font-bold text-center text-jet mb-16">Blog</h2>
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {blogPosts.map((post, index) => (
-              <div key={index} className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
-                <div className="h-48 bg-gradient-to-br from-lavender-200 to-olive-200 flex items-center justify-center">
+              <div key={index} className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-reseda-green/20">
+                <div className="h-48 bg-gradient-to-br from-reseda-green/20 to-battleship-gray-2/20 flex items-center justify-center">
                   {/* Aquí va la imagen del artículo */}
                   <span className="text-4xl">📝</span>
                 </div>
                 <div className="p-6">
-                  <h3 className="text-xl font-semibold text-gray-800 mb-4">{post.title}</h3>
-                  <p className="text-gray-600 mb-4">{post.summary}</p>
-                  <button className="text-lavender-600 font-medium hover:text-lavender-700 transition-colors duration-200">
+                  <h3 className="text-xl font-semibold text-jet mb-4">{post.title}</h3>
+                  <p className="text-battleship-gray mb-4">{post.summary}</p>
+                  <button className="text-reseda-green font-medium hover:text-battleship-gray-2 transition-colors duration-200">
                     Leer más →
                   </button>
                 </div>
@@ -375,13 +360,17 @@ function App() {
             ))}
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Agenda tu cita Section */}
-      <section id="agenda" className="bg-[#E8E1F1] py-16 px-4">
+      <motion.section id="agenda" className="bg-gradient-to-br from-reseda-green/15 to-battleship-gray/15 py-16 px-4"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: 'easeOut' }}
+        viewport={{ once: true }}>
         <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-4">Agenda tu cita</h2>
-          <p className="text-gray-700 mb-6">
+          <h2 className="text-3xl font-bold mb-4 text-white">Agenda tu cita</h2>
+          <p className="text-white mb-6">
             Reserva fácilmente tu consulta online o presencial según tu disponibilidad.
           </p>
           {showCalendly ? (
@@ -395,22 +384,28 @@ function App() {
               ></iframe>
             </div>
           ) : (
-            <button 
+            <motion.button
               onClick={() => setShowFormulario(true)}
-              className="bg-gradient-to-r from-lavender-500 to-olive-500 hover:from-lavender-600 hover:to-olive-600 text-white font-semibold py-4 px-8 rounded-full text-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
+              className="bg-gradient-to-r from-reseda-green to-battleship-gray-2 hover:from-battleship-gray-2 hover:to-reseda-green text-white font-semibold py-4 px-8 rounded-full text-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
+              whileHover={{ scale: 1.05 }}
+              transition={{ type: 'spring', stiffness: 200, damping: 15 }}
             >
               Comenzar proceso de agenda
-            </button>
+            </motion.button>
           )}
         </div>
-      </section>
+      </motion.section>
 
       {/* Consultas Presenciales Section */}
-      <section className="py-20 bg-gradient-to-br from-beige-50 to-lavender-50">
+      <motion.section className="py-20 bg-gradient-to-br from-slate-gray/10 to-reseda-green/10"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: 'easeOut' }}
+        viewport={{ once: true }}>
         <div className="container mx-auto px-6">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-800 mb-6">Consultas Presenciales</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            <h2 className="text-4xl font-bold text-white mb-6">Consultas Presenciales</h2>
+            <p className="text-xl text-white max-w-3xl mx-auto leading-relaxed">
               Te ofrezco consultas presenciales en dos ubicaciones convenientes en Santo Domingo. 
               Elige la que mejor se adapte a tu horario y ubicación.
             </p>
@@ -418,10 +413,10 @@ function App() {
           
           <div className="flex flex-col lg:flex-row gap-8 max-w-6xl mx-auto">
             {/* Nudah - Mañanas */}
-            <div className="flex-1 bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300">
+            <div className="flex-1 bg-white/90 backdrop-blur-sm rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 border border-reseda-green/20">
               <div className="p-8">
-                <h3 className="text-2xl font-bold text-gray-800 mb-4">Consultas en Nudah – Mañanas</h3>
-                <p className="text-gray-600 mb-6">
+                <h3 className="text-2xl font-bold text-jet mb-4">Consultas en Nudah – Mañanas</h3>
+                <p className="text-battleship-gray mb-6">
                   Consultas disponibles en horario matutino para comenzar tu día con bienestar emocional.
                 </p>
                 <div className="w-full h-[200px] rounded-lg overflow-hidden shadow-md">
@@ -442,7 +437,7 @@ function App() {
                     href="https://maps.app.goo.gl/yks975Sj7Ykp52md6" 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="inline-flex items-center text-lavender-600 hover:text-lavender-700 font-medium transition-colors duration-200"
+                    className="inline-flex items-center text-reseda-green hover:text-battleship-gray-2 font-medium transition-colors duration-200"
                     aria-label="Ver ubicación Nudah en Google Maps"
                   >
                     Ver en Google Maps
@@ -455,10 +450,10 @@ function App() {
             </div>
 
             {/* Bodhi - Tardes */}
-            <div className="flex-1 bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300">
+            <div className="flex-1 bg-white/90 backdrop-blur-sm rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 border border-reseda-green/20">
               <div className="p-8">
-                <h3 className="text-2xl font-bold text-gray-800 mb-4">Consultas en Bodhi – Tardes</h3>
-                <p className="text-gray-600 mb-6">
+                <h3 className="text-2xl font-bold text-jet mb-4">Consultas en Bodhi – Tardes</h3>
+                <p className="text-battleship-gray mb-6">
                   Consultas disponibles en horario vespertino para relajarte después de tu jornada.
                 </p>
                 <div className="w-full h-[200px] rounded-lg overflow-hidden shadow-md">
@@ -479,7 +474,7 @@ function App() {
                     href="https://maps.app.goo.gl/Vt99GDn3kdSkMLvd9" 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="inline-flex items-center text-lavender-600 hover:text-lavender-700 font-medium transition-colors duration-200"
+                    className="inline-flex items-center text-reseda-green hover:text-battleship-gray-2 font-medium transition-colors duration-200"
                     aria-label="Ver ubicación Bodhi en Google Maps"
                   >
                     Ver en Google Maps
@@ -492,7 +487,7 @@ function App() {
             </div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Footer */}
       <footer className="bg-gradient-to-r from-gray-800 to-gray-900 text-white py-12">
@@ -559,6 +554,9 @@ function App() {
           }}
         />
       )}
+
+      {/* Anie Butterfly Bot */}
+      <AnieButterflyBot />
     </div>
   );
 }

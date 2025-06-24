@@ -1,0 +1,7 @@
+[
+  { "keywords": ["triste", "deprimido", "desanimado"], "response": "Lo siento que te sientas así. Estoy aquí para escucharte y acompañarte." },
+  { "keywords": ["ansiedad", "nervioso", "estresado"], "response": "Respira profundo. La ansiedad es difícil, pero juntos podemos hacer que pase." },
+  { "keywords": ["feliz", "contento", "bien"], "response": "¡Qué bueno escuchar eso! Me alegra que te sientas bien." },
+  { "keywords": ["ayuda", "no sé qué hacer", "solo"], "response": "No estás solo, estoy aquí para acompañarte. ¿Quieres contarme más?" },
+  { "keywords": [], "response": "Estoy aquí para escucharte 🦋 Cuéntame lo que quieras." }
+] 

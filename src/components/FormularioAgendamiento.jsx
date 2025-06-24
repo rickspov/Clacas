@@ -118,13 +118,13 @@ const FormularioAgendamiento = ({ onClose, onSuccess }) => {
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-      <div className="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+      <div className="bg-white/95 backdrop-blur-sm rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto border border-reseda-green/20">
         <div className="p-8">
           <div className="flex justify-between items-center mb-6">
-            <h2 className="text-3xl font-bold text-gray-800">Agenda tu Cita</h2>
+            <h2 className="text-3xl font-bold text-jet">Agenda tu Cita</h2>
             <button
               onClick={onClose}
-              className="text-gray-500 hover:text-gray-700 text-2xl font-bold"
+              className="text-battleship-gray hover:text-jet text-2xl font-bold transition-colors duration-200"
               aria-label="Cerrar formulario"
             >
               ×
@@ -132,7 +132,7 @@ const FormularioAgendamiento = ({ onClose, onSuccess }) => {
           </div>
 
           {submitStatus === 'success' && (
-            <div className="mb-6 p-4 bg-green-100 border border-green-400 text-green-700 rounded-lg">
+            <div className="mb-6 p-4 bg-reseda-green/10 border border-reseda-green text-reseda-green rounded-lg">
               <h3 className="font-bold mb-2">¡Solicitud enviada exitosamente!</h3>
               <p>Hemos enviado un correo de confirmación a tu email. Te contactaremos pronto para confirmar tu cita.</p>
             </div>
@@ -148,7 +148,7 @@ const FormularioAgendamiento = ({ onClose, onSuccess }) => {
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* Nombre */}
             <div>
-              <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+              <label htmlFor="name" className="block text-sm font-medium text-jet mb-2">
                 Nombre completo *
               </label>
               <input
@@ -157,8 +157,8 @@ const FormularioAgendamiento = ({ onClose, onSuccess }) => {
                 name="name"
                 value={formData.name}
                 onChange={handleInputChange}
-                className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-lavender-500 focus:border-transparent ${
-                  errors.name ? 'border-red-500' : 'border-gray-300'
+                className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-reseda-green focus:border-transparent ${
+                  errors.name ? 'border-red-500' : 'border-battleship-gray/30'
                 }`}
                 placeholder="Tu nombre completo"
               />
@@ -167,7 +167,7 @@ const FormularioAgendamiento = ({ onClose, onSuccess }) => {
 
             {/* Email */}
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+              <label htmlFor="email" className="block text-sm font-medium text-jet mb-2">
                 Email *
               </label>
               <input
@@ -176,8 +176,8 @@ const FormularioAgendamiento = ({ onClose, onSuccess }) => {
                 name="email"
                 value={formData.email}
                 onChange={handleInputChange}
-                className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-lavender-500 focus:border-transparent ${
-                  errors.email ? 'border-red-500' : 'border-gray-300'
+                className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-reseda-green focus:border-transparent ${
+                  errors.email ? 'border-red-500' : 'border-battleship-gray/30'
                 }`}
                 placeholder="tu@email.com"
               />
@@ -186,7 +186,7 @@ const FormularioAgendamiento = ({ onClose, onSuccess }) => {
 
             {/* Teléfono */}
             <div>
-              <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
+              <label htmlFor="phone" className="block text-sm font-medium text-jet mb-2">
                 Teléfono *
               </label>
               <input
@@ -195,8 +195,8 @@ const FormularioAgendamiento = ({ onClose, onSuccess }) => {
                 name="phone"
                 value={formData.phone}
                 onChange={handleInputChange}
-                className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-lavender-500 focus:border-transparent ${
-                  errors.phone ? 'border-red-500' : 'border-gray-300'
+                className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-reseda-green focus:border-transparent ${
+                  errors.phone ? 'border-red-500' : 'border-battleship-gray/30'
                 }`}
                 placeholder="(809) 123-4567"
               />
@@ -205,7 +205,7 @@ const FormularioAgendamiento = ({ onClose, onSuccess }) => {
 
             {/* Tipo de cita */}
             <div>
-              <label htmlFor="appointmentType" className="block text-sm font-medium text-gray-700 mb-2">
+              <label htmlFor="appointmentType" className="block text-sm font-medium text-jet mb-2">
                 Tipo de cita
               </label>
               <select
@@ -213,7 +213,7 @@ const FormularioAgendamiento = ({ onClose, onSuccess }) => {
                 name="appointmentType"
                 value={formData.appointmentType}
                 onChange={handleInputChange}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-lavender-500 focus:border-transparent"
+                className="w-full px-4 py-3 border border-battleship-gray/30 rounded-lg focus:ring-2 focus:ring-reseda-green focus:border-transparent"
               >
                 <option value="presencial">Cita Presencial</option>
                 <option value="online">Cita Online</option>
@@ -224,7 +224,7 @@ const FormularioAgendamiento = ({ onClose, onSuccess }) => {
             {/* Fecha preferida (solo para citas presenciales) */}
             {formData.appointmentType === 'presencial' && (
               <div>
-                <label htmlFor="preferredDate" className="block text-sm font-medium text-gray-700 mb-2">
+                <label htmlFor="preferredDate" className="block text-sm font-medium text-jet mb-2">
                   Fecha preferida (opcional)
                 </label>
                 <input
@@ -233,15 +233,15 @@ const FormularioAgendamiento = ({ onClose, onSuccess }) => {
                   name="preferredDate"
                   value={formData.preferredDate}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-lavender-500 focus:border-transparent"
+                  className="w-full px-4 py-3 border border-battleship-gray/30 rounded-lg focus:ring-2 focus:ring-reseda-green focus:border-transparent"
                 />
               </div>
             )}
 
             {/* Consentimiento informado */}
-            <div className="bg-gray-50 p-4 rounded-lg">
-              <h3 className="font-semibold text-gray-800 mb-3">Consentimiento Informado</h3>
-              <div className="max-h-32 overflow-y-auto text-sm text-gray-600 mb-4 leading-relaxed">
+            <div className="bg-battleship-gray/5 p-4 rounded-lg">
+              <h3 className="font-semibold text-jet mb-3">Consentimiento Informado</h3>
+              <div className="max-h-32 overflow-y-auto text-sm text-battleship-gray/80 mb-4 leading-relaxed">
                 <p className="mb-2">
                   Al completar este formulario, entiendo y acepto que:
                 </p>
@@ -261,9 +261,9 @@ const FormularioAgendamiento = ({ onClose, onSuccess }) => {
                   name="consent"
                   checked={formData.consent}
                   onChange={handleInputChange}
-                  className="mt-1 h-4 w-4 text-lavender-600 focus:ring-lavender-500 border-gray-300 rounded"
+                  className="mt-1 h-4 w-4 text-reseda-green focus:ring-reseda-green border-battleship-gray/30 rounded"
                 />
-                <label htmlFor="consent" className="text-sm text-gray-700">
+                <label htmlFor="consent" className="text-sm text-battleship-gray/80">
                   He leído y acepto el consentimiento informado *
                 </label>
               </div>
@@ -275,7 +275,7 @@ const FormularioAgendamiento = ({ onClose, onSuccess }) => {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="flex-1 bg-gradient-to-r from-lavender-500 to-olive-500 hover:from-lavender-600 hover:to-olive-600 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="flex-1 bg-gradient-to-r from-reseda-green to-olive-500 hover:from-reseda-green/80 hover:to-olive-600 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {isSubmitting ? 'Enviando...' : 'Enviar Solicitud'}
               </button>
@@ -283,7 +283,7 @@ const FormularioAgendamiento = ({ onClose, onSuccess }) => {
               <button
                 type="button"
                 onClick={onClose}
-                className="flex-1 bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-3 px-6 rounded-lg transition-all duration-300"
+                className="flex-1 bg-battleship-gray hover:bg-battleship-gray/80 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300"
               >
                 Cancelar
               </button>
